@@ -1,0 +1,23 @@
+{
+  "name": "ppm",
+  "description": "Political Party Manager",
+  "main": "public/index.html",
+  "authors": [
+    "Eduardo Oviedo Blanco"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "angularjs#^1.6.1",
+    "angular-ui-router": "^0.4.2"
+  }
+}
