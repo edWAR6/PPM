@@ -12,13 +12,32 @@ function run(){
   firebase.initializeApp(config);
 };
 
-function config($routeProvider){
-  $routeProvider.when('/login', {
-    template: '<inbox mails="$resolve.mails"></inbox>',
-    resolve: {mails: function(Mails) { return Mails.fetch(); }}
+function config($stateProvider, $urlRouterProvider){
+  const states = [
+    {
+      name: 'home',
+      url: '/',
+      component: 'homeComponent'
+    },
+    {
+      name: 'login',
+      url: '/login',
+      component: 'loginComponent'
+    },
+    {
+      name: 'militants',
+      url: '/militants',
+      component: 'militantsComponent'
+    }
+  ];
+
+  $urlRouterProvider.when('', '/');
+  states.forEach(function(state) {
+    $stateProvider.state(state);
   });
+  $urlRouterProvider.otherwise('/');
 };
 
-angular.module('ppm', ['ppm.components'])
+angular.module('ppm', ['ui.router', 'ngRoute', 'firebase', 'ppm.components'])
 .run(run)
 .config(config);

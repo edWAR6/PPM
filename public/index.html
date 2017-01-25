@@ -3,17 +3,27 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>PPM</title>
+    <title>PPM</title>    
     <!-- AngularJS -->
     <script src="bower_components/angular/angular.min.js"></script>
+    <!-- ui router -->
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <!-- Angular route -->
     <script src="bower_components/angular-route/angular-route.min.js"></script>
     <!-- Firebase -->
     <script src="bower_components/firebase/firebase.js"></script>
     <!-- AngularFire -->
     <script src="bower_components/angularfire/dist/angularfire.min.js"></script>
+    <!-- Angular files -->
     <script src="app.js"></script>
+    <script src="home/home.js"></script>
+    <script src="login/login.js"></script>
+    <script src="militants/militants.js"></script>
   </head>
   <body>
+    <!--<a ui-sref="home" ui-sref-active="active">Home</a>
+    <a ui-sref="login" ui-sref-active="active">Login</a>
+    <a ui-sref="militants" ui-sref-active="active">Militant</a>-->
     <ui-view></ui-view>
   </body>
 </html>
