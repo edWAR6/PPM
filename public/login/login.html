@@ -1,9 +1,81 @@
-<h1>Login {{auth.user.name}}</h1>
+<style is="custom-style">
+  .container{
+    margin-top: 50px;
+    text-align: center;
+  }
 
+  .headline {
+    opacity: var(--dark-primary-opacity);
+    @apply(--paper-font-headline);    
+  }
 
-<input type="email" class="form-control" placeholder="email" ng-model="$ctrl.email" />
+  hr{
+    border: 0;
+    height: 5px;
+    background: var(--paper-red-400);
+    background-image: linear-gradient(to right, var(--paper-red-200), var(--paper-red-400), var(--paper-red-200));
+  }
 
-<input type="password" class="form-control" placeholder="password" ng-model="$ctrl.password" />
+  .title {
+    color: var(--paper-blue-800);
+    opacity: var(--dark-primary-opacity);
+    @apply(--paper-font-title);
+  }
 
-<button type="submit" class="btn btn-default" ng-click="$ctrl.signIn()">Sign In</button>
-</fieldset>
+  paper-card{
+    width: 100%;
+  }
+  
+  paper-button.sign-in{
+    width: 100%;
+    margin: 25px 0;
+  }
+
+  .logos{
+    text-align: center;
+  }
+
+  .logos img{
+    margin-top: 25px;
+    margin-bottom: 25px;
+  }
+
+  #login_error{
+    --paper-toast-background-color: var(--paper-red-200);
+    --paper-toast-color: white;
+  }
+</style>
+
+<div class="container centered">
+  <h2 class="headline">Administrador de Partido Político</h2>
+  <hr>
+  <h1 class="title">PPM</h1>
+</div>
+
+<div class="centered">
+  <paper-card>
+    <div class="card-content">
+      <form ng-submit="$ctrl.signIn()">
+        <paper-input-container>
+          <label>Usuario</label>
+          <input is="iron-input" ng-model="$ctrl.email">
+        </paper-input-container>
+        <paper-input-container>
+          <label>Contraseña</label>
+          <input type="password" is="iron-input" ng-model="$ctrl.password">
+        </paper-input-container>
+        <paper-button class="sign-in" raised ng-click="$ctrl.signIn()">Ingresar</paper-button>
+      </form>
+    </div>
+    <div class="card-actions">
+      <paper-button>Recuperar Contraseña</paper-button>
+    </div>
+  </paper-card>
+</div>
+
+<div class="logos centered">
+  <img src="assets/png.png" alt="PNG">
+  <img src="assets/ppm@3x.png" alt="PPM">
+</div>
+
+<paper-toast id="login_error" text="{{$ctrl.errorMessage}}"></paper-toast>

@@ -1,7 +1,6 @@
 'use strict';
 
-function run(){
-  // Initialize Firebase
+function run($rootScope, $transitions, $state){
   const config = {
     apiKey: "AIzaSyCk9uz2j3CrOqPaRQacmIKEKxF0JaGV0xs",
     authDomain: "hello-ppm.firebaseapp.com",
@@ -10,6 +9,11 @@ function run(){
     messagingSenderId: "595677741726"
   };
   firebase.initializeApp(config);
+  
+  $transitions.onError({}, ($transition$) => {
+    var toState = $transition$.to().name;
+    $state.go("login");
+  });
 };
 
 function config($stateProvider, $urlRouterProvider){
@@ -17,7 +21,12 @@ function config($stateProvider, $urlRouterProvider){
     {
       name: 'home',
       url: '/',
-      component: 'homeComponent'
+      component: 'homeComponent',
+      resolve: {
+        "user": ($auth) => {          
+          return $auth.$requireSignIn();
+        }
+      }
     },
     {
       name: 'login',
@@ -27,7 +36,12 @@ function config($stateProvider, $urlRouterProvider){
     {
       name: 'militants',
       url: '/militants',
-      component: 'militantsComponent'
+      component: 'militantsComponent',
+      resolve: {
+        "user": ($auth) => {          
+          return $auth.$requireSignIn();
+        }
+      }
     }
   ];
 
@@ -38,6 +52,11 @@ function config($stateProvider, $urlRouterProvider){
   $urlRouterProvider.otherwise('/');
 };
 
-angular.module('ppm', ['ui.router', 'ngRoute', 'firebase', 'ppm.components'])
+function auth($firebaseAuth) {
+  return $firebaseAuth();
+};
+
+angular.module('ppm', ['ui.router', 'ngRoute', 'angularCSS', 'firebase', 'ppm.components'])
 .run(run)
-.config(config);
+.config(config)
+.factory('$auth', auth);

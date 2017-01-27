@@ -1,1 +1,74 @@
-<h1>Home</h1>
+<style is="custom-style">
+
+app-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 212px;
+  color: #fff;
+  --app-header-background-front-layer: {
+    background: var(--paper-blue-700);
+  };
+  --app-header-background-rear-layer: {
+    background: var(--paper-blue-800);
+  };
+}
+
+paper-icon-button {
+  --paper-icon-button-ink-color: white;
+}
+
+app-toolbar.tall {
+  height: 148px;
+}
+
+sample-content {
+  padding-top: 212px;
+}
+
+[main-title] {
+  font-weight: lighter;
+  margin-left: 108px;
+}
+
+[condensed-title] {
+  font-weight: lighter;
+  margin-left: 30px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+[condensed-title] i {
+  font-weight: 100;
+  font-style: normal;
+}
+
+@media (max-width: 639px) {
+  [main-title] {
+    margin-left: 50px;
+    font-size: 30px;
+  }
+  [condensed-title] {
+    font-size: 15px;
+  }
+}
+</style>
+
+<app-header condenses reveals effects="waterfall resize-title blend-background parallax-background">
+  <app-toolbar>    
+    <h4 condensed-title>
+      <img src="assets/ppm.png" alt="PPM">
+      PPM - PNG
+    </h4>
+    <paper-icon-button icon="settings"></paper-icon-button>
+  </app-toolbar>
+  <app-toolbar class="tall">    
+    <h1 main-title>
+      <img src="assets/ppm@2x.png" alt="PPM">
+      PPM - Partido Nueva Generación
+    </h1>    
+  </app-toolbar>
+</app-header>
+
+<sample-content size="10"></sample-content>

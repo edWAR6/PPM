@@ -1,14 +1,21 @@
-function loginController($firebaseAuth){
-  const ref = firebase.database().ref();
-  this.authentication = $firebaseAuth();
-  this.email = '';
-  this.password = '';
+function loginController($auth, $state){
+  const login = this;
+  login.email = '';
+  login.password = '';
+  login.errorMessage = '';
 
-  this.signIn = function(){
-    this.authentication.$signInWithEmailAndPassword(this.email, this.password).then(function(firebaseUser){
+  login.signIn = function(){
+    $auth.$signInWithEmailAndPassword(this.email, this.password).then(function(firebaseUser){
       console.log("Signed in as:", firebaseUser.uid);
+      $state.go("home");
     }).catch(function(error) {
       console.error("Authentication failed:", error);
+      if(error.code == 'auth/invalid-email'){
+        login.errorMessage = 'Usuario o contraseña incorrecta.';
+      }else{
+        login.errorMessage = 'Ocurrió un error al intentar ingresar, intente de nuevo.';
+      };      
+      login_error.open();
     });
   };
 };

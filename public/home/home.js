@@ -4,6 +4,6 @@ function homeController(){
 
 angular.module('ppm.components', [])
 .component('homeComponent', {
-    template: 'home',
+    templateUrl: 'home/home.html',
     controller: homeController
 });
